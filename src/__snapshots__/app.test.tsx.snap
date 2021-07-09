@@ -1,17 +1,37 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders login if isLoggedIn is false 1`] = `
-<I18nProvider
+<IntlProvider
+  defaultFormats={Object {}}
+  defaultLocale="en"
+  formats={Object {}}
   locale="en"
+  messages={Object {}}
+  onError={[Function]}
+  textComponent={Symbol(react.fragment)}
 >
-  <Routes />
-</I18nProvider>
+  <I18nProvider
+    locale="en"
+  >
+    <Routes />
+  </I18nProvider>
+</IntlProvider>
 `;
 
 exports[`renders page layout 1`] = `
-<I18nProvider
+<IntlProvider
+  defaultFormats={Object {}}
+  defaultLocale="en"
+  formats={Object {}}
   locale="en"
+  messages={Object {}}
+  onError={[Function]}
+  textComponent={Symbol(react.fragment)}
 >
-  <Routes />
-</I18nProvider>
+  <I18nProvider
+    locale="en"
+  >
+    <Routes />
+  </I18nProvider>
+</IntlProvider>
 `;

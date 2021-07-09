@@ -4,6 +4,7 @@ import {
   ComputedReportItemType,
   ComputedReportItemValueType,
 } from 'components/charts/common/chartDatumUtils';
+import messages from 'locales/messages';
 import { DashboardChartType } from 'store/dashboard/common/dashboardCommon';
 
 import { OcpUsageDashboardTab, OcpUsageDashboardWidget } from './ocpUsageDashboardCommon';
@@ -13,11 +14,11 @@ const getId = () => currrentId++;
 
 export const costSummaryWidget: OcpUsageDashboardWidget = {
   id: getId(),
-  titleKey: 'ocp_usage_dashboard.cost_title',
+  titleKey: messages.OCPDashboardCostTitle,
   reportPathsType: ReportPathsType.ocpUsage,
   reportType: ReportType.cost,
   details: {
-    costKey: 'cost',
+    costKey: messages.Cost,
     formatOptions: {
       fractionDigits: 2,
     },
@@ -30,7 +31,7 @@ export const costSummaryWidget: OcpUsageDashboardWidget = {
     computedReportItem: ComputedReportItemType.infrastructure,
     computedReportItemValue: ComputedReportItemValueType.usage,
     formatOptions: {},
-    titleKey: 'ocp_usage_dashboard.cost_trend_title',
+    titleKey: messages.OCPUsageDashboardCostTrendTitle,
     type: ChartType.rolling,
   },
   topItems: {
@@ -43,20 +44,20 @@ export const costSummaryWidget: OcpUsageDashboardWidget = {
 
 export const cpuWidget: OcpUsageDashboardWidget = {
   id: getId(),
-  titleKey: 'ocp_usage_dashboard.cpu_title',
+  titleKey: messages.OCPUsageDashboardCPUTitle,
   reportPathsType: ReportPathsType.ocpUsage,
   reportType: ReportType.cpu,
   details: {
     formatOptions: {
       fractionDigits: 0,
     },
-    requestKey: 'ocp.requests',
+    requestKey: messages.Requests,
     showUnits: true,
     showUsageFirst: true,
     usageFormatOptions: {
       fractionDigits: 0,
     },
-    usageKey: 'dashboard.usage',
+    usageKey: messages.Usage,
   },
 
   trend: {
@@ -65,7 +66,7 @@ export const cpuWidget: OcpUsageDashboardWidget = {
     formatOptions: {
       fractionDigits: 2,
     },
-    titleKey: 'ocp.daily_usage_request_comparison',
+    titleKey: messages.OCPDailyUsageAndRequestComparison,
     type: ChartType.daily,
   },
   chartType: DashboardChartType.usage,
@@ -73,7 +74,7 @@ export const cpuWidget: OcpUsageDashboardWidget = {
 
 export const memoryWidget: OcpUsageDashboardWidget = {
   id: getId(),
-  titleKey: 'ocp_usage_dashboard.memory_title',
+  titleKey: messages.OCPDashboardMemoryUsageAndRequests,
   reportPathsType: ReportPathsType.ocpUsage,
   reportType: ReportType.memory,
   details: {
@@ -83,13 +84,13 @@ export const memoryWidget: OcpUsageDashboardWidget = {
     requestFormatOptions: {
       fractionDigits: 0,
     },
-    requestKey: 'ocp.requests',
+    requestKey: messages.Requests,
     showUnits: true,
     showUsageFirst: true,
     usageFormatOptions: {
       fractionDigits: 0,
     },
-    usageKey: 'dashboard.usage',
+    usageKey: messages.Usage,
   },
   trend: {
     computedReportItem: ComputedReportItemType.usage,
@@ -97,7 +98,7 @@ export const memoryWidget: OcpUsageDashboardWidget = {
     formatOptions: {
       fractionDigits: 2,
     },
-    titleKey: 'ocp.daily_usage_request_comparison',
+    titleKey: messages.OCPDailyUsageAndRequestComparison,
     type: ChartType.daily,
   },
   chartType: DashboardChartType.usage,
@@ -105,7 +106,7 @@ export const memoryWidget: OcpUsageDashboardWidget = {
 
 export const volumeWidget: OcpUsageDashboardWidget = {
   id: getId(),
-  titleKey: 'ocp_usage_dashboard.volume_title',
+  titleKey: messages.OCPDashboardVolumeUsageAndRequests,
   reportPathsType: ReportPathsType.ocpUsage,
   reportType: ReportType.volume,
   details: {
@@ -115,13 +116,13 @@ export const volumeWidget: OcpUsageDashboardWidget = {
     requestFormatOptions: {
       fractionDigits: 0,
     },
-    requestKey: 'ocp.requests',
+    requestKey: messages.Requests,
     showUnits: true,
     showUsageFirst: true,
     usageFormatOptions: {
       fractionDigits: 0,
     },
-    usageKey: 'dashboard.usage',
+    usageKey: messages.Usage,
   },
   trend: {
     computedReportItem: ComputedReportItemType.usage,
@@ -129,7 +130,7 @@ export const volumeWidget: OcpUsageDashboardWidget = {
     formatOptions: {
       fractionDigits: 2,
     },
-    titleKey: 'ocp.daily_usage_request_comparison',
+    titleKey: messages.OCPDailyUsageAndRequestComparison,
     type: ChartType.daily,
   },
   chartType: DashboardChartType.usage,

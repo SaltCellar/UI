@@ -24,6 +24,9 @@
     "start:dev": "NODE_OPTIONS=--max-old-space-size=8192 webpack serve -c ./webpack.config.js",
     "stats": "yarn build:client --profile --json > stats.json",
     "test": "jest",
+    "translations": "yarn translations:extract && yarn translations:compile",
+    "translations:extract": "npx formatjs extract ./src/locales/*.ts --out-file ./build/messages/src/Messages.json",
+    "translations:compile": "npx formatjs compile ./build/messages/src/Messages.json --out-file ./locales/translations.json",
     "manifest:update": "node scripts/createManifest",
     "codemods:test": "yarn pf-codemods ./src",
     "container:test": "docker stop -t 0 koku-ui-test >/dev/null; docker build -t koku-ui-test . && docker run -i --rm -p 8080:8080 --name koku-ui-test koku-ui-test",
@@ -31,6 +34,7 @@
     "verify": "tsc --noEmit"
   },
   "dependencies": {
+    "@formatjs/cli": "4.2.12",
     "@fortawesome/free-solid-svg-icons": "5.15.2",
     "@patternfly/patternfly": "^4.115.2",
     "@patternfly/react-charts": "^6.15.3",
@@ -67,6 +71,7 @@
     "react-bootstrap": "1.5.0",
     "react-dom": "17.0.1",
     "react-i18next": "11.8.15",
+    "react-intl": "5.17.7",
     "react-redux": "7.2.2",
     "react-router-dom": "5.2.0",
     "redux": "4.0.5",

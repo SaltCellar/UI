@@ -1,7 +1,9 @@
+import { MessageDescriptor } from '@formatjs/intl/src/types';
 import { Forecast } from 'api/forecasts/forecast';
 import { Report } from 'api/reports/report';
+import { createIntlEnv, getDateFnsLocale } from 'components/i18n/localeEnv';
 import { endOfMonth, format, getDate, getYear, startOfMonth } from 'date-fns';
-import i18next from 'i18next';
+import messages from 'locales/messages';
 import { ComputedForecastItem, getComputedForecastItems } from 'utils/computedForecast/getComputedForecastItems';
 import { ComputedReportItem, getComputedReportItems } from 'utils/computedReport/getComputedReportItems';
 import { FormatOptions, unitLookupKey, ValueFormatter } from 'utils/formatValue';
@@ -342,59 +344,35 @@ export function getDateRange(
   return [start, end];
 }
 
+// returns localized month name
+export function getLocalizedMonth(year, month, abbreviate: boolean = true) {
+  const pattern = abbreviate ? 'MMM' : 'MMMM';
+  const monthName = format(new Date(year, month), pattern, { locale: getDateFnsLocale() });
+
+  return monthName;
+}
+
+// returns localized abbreviated month name (MMM format)
+export function getAbbreviatedMonth(year, month) {
+  return getLocalizedMonth(year, month, true);
+}
+
 export function getDateRangeString(
   datums: ChartDatum[],
   firstOfMonth: boolean = false,
   lastOfMonth: boolean = false,
   offset: number = 0
 ) {
+  const intl = createIntlEnv();
   const [start, end] = getDateRange(datums, firstOfMonth, lastOfMonth, offset);
-
   const count = getDate(end);
   const endDate = format(end, 'dd');
-  const month = Number(format(start, 'M')) - 1;
-  const month_abbr = Number(format(start, 'MMM')) - 1;
   const startDate = format(start, 'dd');
   const year = getYear(end);
+  const month = Number(format(start, 'M')) - 1;
+  const abbrMonth = getAbbreviatedMonth(year, month);
 
-  if (i18next && i18next.t) {
-    return i18next.t(`chart.date_range`, {
-      count,
-      endDate,
-      month,
-      startDate,
-      year,
-    });
-  }
-  // Federated modules may not have access to the i18next package
-  if (count > 1) {
-    return `${startDate}-${endDate} ${month_abbr} ${year}`;
-  }
-  return `${startDate} ${month_abbr} ${year}`;
-}
-
-export function getMonthRangeString(
-  datums: ChartDatum[],
-  key: string = 'chart.month_legend_label',
-  offset: number = 0
-): [string, string] {
-  const [start, end] = getDateRange(datums, true, false, offset);
-
-  const startMonth = Number(format(start, 'MMM')) - 1;
-  const endMonth = Number(format(end, 'M')) - 1;
-
-  if (i18next && i18next.t) {
-    return [
-      i18next.t(key, {
-        month: startMonth,
-      }),
-      i18next.t(key, {
-        month: endMonth,
-      }),
-    ];
-  }
-  // Federated modules may not have access to the i18next package
-  return [`${startMonth}`, `${endMonth}`];
+  return intl.formatMessage(messages.ChartDateRange, { count, startDate, endDate, abbrMonth, year });
 }
 
 export function getMaxValue(datums: ChartDatum[]) {
@@ -429,19 +407,18 @@ export function getMaxMinValues(datums: ChartDatum[]) {
 
 export function getTooltipContent(formatValue) {
   return function labelFormatter(value: number, unit: string = null, options: FormatOptions = {}) {
+    const intl = createIntlEnv();
     const lookup = unitLookupKey(unit);
     switch (lookup) {
-      case 'core-hours':
+      case 'coreHours':
       case 'hour':
       case 'hrs':
       case 'gb':
-      case 'gb-hours':
-      case 'gb-mo':
-      case 'gibibyte month':
-      case 'vm-hours':
-        return i18next.t(`unit_tooltips.${lookup}`, {
-          value: `${formatValue(value, unit, options)}`,
-        });
+      case 'gbHours':
+      case 'gbMo':
+      case 'gibibyteMonth':
+      case 'vmHours':
+        return intl.formatMessage(messages.UnitTooltips, { units: lookup, value: formatValue(value, unit, options) });
       default:
         return `${formatValue(value, unit, options)}`;
     }
@@ -467,28 +444,32 @@ export function getTooltipLabel(
 
 export function getCostRangeString(
   datums: ChartDatum[],
-  key: string = 'chart.cost_legend_label',
+  key: MessageDescriptor = messages.ChartCostLegendLabel,
   firstOfMonth: boolean = false,
   lastOfMonth: boolean = false,
   offset: number = 0
 ) {
+  const intl = createIntlEnv();
   if (!(datums && datums.length)) {
-    return i18next.t(`${key}_no_data`);
+    return intl.formatMessage(messages.ChartNoData);
   }
-  const [start, end] = getDateRange(datums, firstOfMonth, lastOfMonth, offset);
 
-  return i18next.t(key, {
+  const [start, end] = getDateRange(datums, firstOfMonth, lastOfMonth, offset);
+  const year = getYear(end);
+  const abbrMonth = getAbbreviatedMonth(year, start.getMonth());
+
+  return intl.formatMessage(key, {
     count: getDate(end),
-    endDate: format(end, 'd'),
-    month: Number(format(start, 'M')) - 1,
     startDate: format(start, 'd'),
-    year: getYear(end),
+    endDate: format(end, 'd'),
+    abbrMonth,
+    year,
   });
 }
 
 export function getUsageRangeString(
   datums: ChartDatum[],
-  key: string = 'chart.usage_legend_label',
+  key: MessageDescriptor = messages.ChartUsageLegendlabel,
   firstOfMonth: boolean = false,
   lastOfMonth: boolean = false,
   offset: number = 0

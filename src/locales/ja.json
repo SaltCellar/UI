@@ -1,0 +1,916 @@
+{
+  "aws_cloud_dashboard": {
+    "compute_title": "Compute (EC2) instances usage",
+    "cost_title": "Amazon Web Services filtered by OpenShift cost",
+    "cost_trend_title": "Amazon Web Services cumulative cost comparison ({{units}})",
+    "daily_cost_trend_title": "Amazon Web Services daily cost comparison ({{units}})"
+  },
+  "aws_dashboard": {
+    "compute_title": "Compute (EC2) instances usage",
+    "cost_title": "Amazon Web Services cost",
+    "cost_trend_title": "Amazon Web Services cumulative cost comparison ({{units}})",
+    "daily_cost_trend_title": "Amazon Web Services daily cost comparison ({{units}})"
+  },
+  "aws_details": {
+    "org_unit_column_title": "Names"
+  },
+  "azure_cloud_dashboard": {
+    "compute_title": "Virtual machines usage",
+    "cost_title": "Microsoft Azure filtered by OpenShift cost",
+    "cost_trend_title": "Microsoft Azure cumulative cost comparison ({{units}})",
+    "daily_cost_trend_title": "Microsoft Azure daily cost comparison ({{units}})"
+  },
+  "azure_dashboard": {
+    "compute_title": "Virtual machines usage",
+    "cost_title": "Microsoft Azure cost",
+    "cost_trend_title": "Microsoft Azure cumulative cost comparison ({{units}})",
+    "daily_cost_trend_title": "Microsoft Azure daily cost comparison ({{units}})"
+  },
+  "breakdown": {
+    "back_to_details": "Back to $t(breakdown.navigation.{{value}}) $t(group_by.top_values.{{groupBy}}) details",
+    "cluster_title": "Clusters",
+    "cost_breakdown_aria_label": "A description of markup, raw cost and usage cost",
+    "cost_breakdown_title": "Cost breakdown",
+    "cost_chart": {
+      "aria_desc": "Breakdown of markup, raw, and usage costs",
+      "aria_title": "Cost breakdown",
+      "markup_label": "Markup",
+      "raw_label": "Raw cost",
+      "tooltip": "{{name}}: {{value}}",
+      "usage_label": "Usage cost"
+    },
+    "cost_overview_title": "Cost overview",
+    "cpu_title": "CPU",
+    "historical_chart": {
+      "cost_label": "Cost ({{units}})",
+      "cost_title": "Cost comparison",
+      "cpu_title": "CPU usage, request, and limit comparison",
+      "day_of_month_label": "Day of Month",
+      "instance_type_label": "hrs",
+      "instance_type_title": "Compute usage comparison",
+      "memory_title": "Memory usage, request, and limit comparison",
+      "modal_title": "{{name}} daily usage comparison",
+      "storage_label": "gb-mo",
+      "storage_title": "Storage usage comparison",
+      "units_label": "{{units}}",
+      "view_data": "View Historical Data"
+    },
+    "historical_data_title": "Historical data",
+    "markup_desc": "The portion of cost calculated by applying markup or discount to infrastructure raw cost in the cost management application.",
+    "markup_title": "Markup",
+    "memory_title": "Memory",
+    "navigation": {
+      "aws": "Amazon Web Services",
+      "azure": "Microsoft Azure",
+      "gcp": "Google Cloud Platform",
+      "ibm": "IBM Cloud",
+      "ocp": "OpenShift"
+    },
+    "raw_cost_desc": "The costs reported by a cloud provider without any cost model calculations applied.",
+    "raw_cost_title": "Raw cost",
+    "summary_title": "Cost by $t(group_by.top_values.{{groupBy}}, { 'count': 2 })",
+    "title": "{{value}}",
+    "total_cost_date": "$t(group_by.values.{{value}}) total cost ({{startDate}} $t(months_abbr.{{month}}))",
+    "usage_cost_desc": "The portion of cost calculated by applying hourly and/or monthly price list rates to metrics.",
+    "usage_cost_title": "Usage cost"
+  },
+  "chart": {
+    "cost_forecast_cone_legend_label": "Cost confidence ({{startDate}} $t(months_abbr.{{month}}))",
+    "cost_forecast_cone_legend_label_no_data": "Cost confidence (no data)",
+    "cost_forecast_cone_legend_tooltip": "Cost confidence ($t(months_abbr.{{month}}))",
+    "cost_forecast_cone_tooltip": "{{value0}} - {{value1}}",
+    "cost_forecast_legend_label": "Cost forecast ({{startDate}} $t(months_abbr.{{month}}))",
+    "cost_forecast_legend_label_no_data": "Cost forecast (no data)",
+    "cost_forecast_legend_tooltip": "Cost forecast ($t(months_abbr.{{month}}))",
+    "cost_infrastructure_forecast_cone_legend_label": "Infrastructure confidence ({{startDate}} $t(months_abbr.{{month}}))",
+    "cost_infrastructure_forecast_cone_legend_label_no_data": "Infrastructure confidence (no data)",
+    "cost_infrastructure_forecast_cone_legend_tooltip": "Infrastructure confidence ($t(months_abbr.{{month}}))",
+    "cost_infrastructure_forecast_cone_tooltip": "{{value0}} - {{value1}}",
+    "cost_infrastructure_forecast_legend_label": "Infrastructure forecast ({{startDate}} $t(months_abbr.{{month}}))",
+    "cost_infrastructure_forecast_legend_label_no_data": "Infrastructure forecast (no data)",
+    "cost_infrastructure_forecast_legend_tooltip": "Infrastructure forecast ($t(months_abbr.{{month}}))",
+    "cost_infrastructure_legend_label": "Infrastructure cost ({{startDate}} $t(months_abbr.{{month}}))",
+    "cost_infrastructure_legend_label_no_data": "Infrastructure cost (no data)",
+    "cost_infrastructure_legend_tooltip": "Infrastructure cost ($t(months_abbr.{{month}}))",
+    "cost_legend_label": "Cost ({{startDate}} $t(months_abbr.{{month}}))",
+    "cost_legend_label_no_data": "Cost (no data)",
+    "cost_legend_tooltip": "Cost ($t(months_abbr.{{month}}))",
+    "cost_supplementary_legend_label": "Supplementary cost ({{startDate}} $t(months_abbr.{{month}}))",
+    "cost_supplementary_legend_label_no_data": "Supplementary cost (no data)",
+    "cost_supplementary_legend_tooltip": "Supplementary cost ($t(months_abbr.{{month}}))",
+    "date": "{{date}}-$t(months_abbr.{{month}})",
+    "date_range": "{{startDate}} $t(months_abbr.{{month}}) {{year}}",
+    "day_of_month_title": "Day {{day}}",
+    "limit_legend_label": "Limit ({{startDate}} $t(months_abbr.{{month}}))",
+    "limit_legend_label_no_data": "Limit (no data)",
+    "limit_legend_tooltip": "Limit ($t(months_abbr.{{month}}))",
+    "month_legend_label": "$t(months_abbr.{{month}})",
+    "no_data": "no data",
+    "others": "{{count}} Other",
+    "requests_legend_label": "Requests ({{startDate}} $t(months_abbr.{{month}}))",
+    "requests_legend_label_no_data": "Requests (no data)",
+    "requests_legend_tooltip": "Requests ($t(months_abbr.{{month}}))",
+    "usage_legend_label": "Usage ({{startDate}} $t(months_abbr.{{month}}))",
+    "usage_legend_label_no_data": "Usage (no data)",
+    "usage_legend_tooltip": "Usage ($t(months_abbr.{{month}}))"
+  },
+  "cost": "Cost",
+  "cost_management": "Cost Management",
+  "cost_management_overview": "$t(cost_management) Overview",
+  "cost_models": {
+    "add_rate_form": {
+      "add_more_tag_values": "Add more tag values",
+      "default_option": "Select...",
+      "duplicate": "This tag key is already in used",
+      "enter_a_tag_key": "Enter a tag key",
+      "enter_a_tag_value": "Enter a tag value",
+      "error_message": "Rate should be a positive number",
+      "infrastructure": "Infrastructure",
+      "measurement_select": "Measurement",
+      "metric_select": "Metric",
+      "not_number": "Rate must be a number",
+      "not_positive": "Rate must be a positive number",
+      "rate_switch": "Enter rate by tag",
+      "save_rate_button": "Save rate",
+      "supplementary": "Supplementary",
+      "tag_key": "Filter by tag key",
+      "tag_too_long": "Should not exceed 100 characters"
+    },
+    "calculation_type": "Calculation type",
+    "default": "Default",
+    "description_too_long": "Should not exceed 500 characters",
+    "infra_cost_switch": "Use this rate to calculate infrastructure cost",
+    "lowercase": {
+      "Currency": "price ({{units}})",
+      "Request": "request ({{units}})",
+      "Usage": "usage ({{units}})"
+    },
+    "no": "No",
+    "node-month": "node-month",
+    "rate": "Rate",
+    "read_only_tooltip": "You have read only permissions",
+    "remove_button": "Remove",
+    "required_field": "This field is required",
+    "table": {
+      "measurement": "Measurement",
+      "metric": "Metric",
+      "tag_key": "Tag key",
+      "tagged_rates": "Various"
+    },
+    "tag_value": "Tag value",
+    "yes": "Yes"
+  },
+  "cost_models_details": {
+    "action_assign": "Assign source(s)",
+    "action_delete": "Delete",
+    "action_edit": "Edit",
+    "action_unassign": "Unassign",
+    "add_rate": "Add rate",
+    "add_rate_modal": {
+      "cancel": "Cancel",
+      "save": "Save",
+      "title": "Add rate"
+    },
+    "add_source": "Assign source",
+    "assign_sources": "Assign sources",
+    "assign_sources_error_action_button": "Refresh this dialog",
+    "assign_sources_error_desc": "You cannot assign a source at this time. Try refreshing this page. If the problem persists, contact your organization administrator or visit our <0>Status Page</0> for known outages.",
+    "assign_sources_error_title": "This action is temporarily unavailable",
+    "cost_model": {
+      "cost_models": "Cost models",
+      "source_type": "Source type"
+    },
+    "description_markup": "Percentage to add to or subtract from the base cost of the source(s)",
+    "edit_cost_model": "Edit cost model",
+    "edit_markup": "Edit markup",
+    "edit_markup_action": "Edit markup",
+    "edit_rate": "Edit rate",
+    "empty_state_bad_uuid": {
+      "description": "Cost model with uuid: {{ uuid }} does not exist.",
+      "title": "Cost model can not be found"
+    },
+    "empty_state_rate": {
+      "description": "To add rates to the price list, click on the \"Add\" rate button above.",
+      "title": "No rates are set"
+    },
+    "empty_state_source": {
+      "description": "Select the source(s) you want to apply this cost model to.",
+      "title": "No sources are assigned"
+    },
+    "header": {
+      "title": "Cost models"
+    },
+    "save_button": "Save",
+    "table": {
+      "columns": {
+        "name": "Name"
+      }
+    }
+  },
+  "cost_models_router": {
+    "error_title": "Fail routing to cost model",
+    "no_match": "This source is not assigned to any cost model",
+    "server_error": "Server error: could not get the cost model."
+  },
+  "cost_models_wizard": {
+    "cancel_button": "Cancel",
+    "confirm": {
+      "cancel": "No, I want to continue",
+      "message": "Are you sure you want to stop creating a cost model? All settings will be discarded.",
+      "ok": "Yes, I want to exit",
+      "title": "Exit cost model creation"
+    },
+    "description": "A cost model allows you to associate a price to metrics provided by your sources to charge for utilization of resources.",
+    "empty_state": {
+      "add_rate": "Add rate",
+      "desc_create": "To create a price list, begin by clicking the <0>Create rate</0> button.",
+      "desc_other_time": "You can create a price list or modify one at a later time.",
+      "desc_skip": "To skip this step, click the <0>next</0> button.",
+      "next": "Next",
+      "title": "A price list has not been created."
+    },
+    "finish_button": "Finish",
+    "general_info": {
+      "name_too_long": "Should not exceed 100 characters",
+      "source_type_empty_value_label": "Select source type",
+      "source_type_label": "Source type",
+      "title": "Enter general information"
+    },
+    "inprogress_message": "Please wait while processing the request",
+    "markup": {
+      "invalid_markup_text": "Markup must be a positive or negative number",
+      "markup_label": "Markup rate",
+      "sub_title": "To apply a markup to the base cost of your source(s), enter a positive percentage value. To apply a discount, enter a negative value to subtract from the base costs.",
+      "title": "Set a markup or discount (optional)"
+    },
+    "no_rates": "No rates were added to the price list",
+    "price_list": {
+      "actions": "price list tier actions",
+      "actions_delete": "delete action",
+      "cancel": "Cancel",
+      "create_rate": "Create rate",
+      "data_list_aria_label": "Cost model price list data list",
+      "delete_button": "Delete",
+      "filter_placeholder": "Filter by rate...",
+      "remove_button": "Remove",
+      "results_text": "Results {{num}}",
+      "sub_title_add": "Select the metric you want to assign a price to, and specify a measurement unit and rate. You can optionally set multiple rates for particular tags.",
+      "sub_title_table": "The following is a list of rates you have set so far for this price list.",
+      "tier": "tier",
+      "title": "Create a price list",
+      "toolbar_top_aria_label": "Price list top toolbar - rates",
+      "toolbar_top_results_aria_label": "results section",
+      "update_button": "Edit rate"
+    },
+    "review": {
+      "back_button": "Back",
+      "close_button": "Close",
+      "create_button": "Create",
+      "markup": "Markup/discount",
+      "sources": "Assigned sources",
+      "sub_title_details": "Review and confirm your cost model configuration and assignments. Click <0>Create</0> to create the cost model, or <1>Back</1> to revise.",
+      "sub_title_success": "Costs for resources connected to the assigned sources will now be calculated using the newly created {{ cost_model }} cost model.",
+      "title_details": "Review details",
+      "title_success": "Creation successful"
+    },
+    "source": {
+      "caption": "Select from the following {{ type }} sources:",
+      "error": {
+        "action": "Refresh this step",
+        "desc": "Try refreshing this step or you can skip this step (as it is optional) and assign the source to the cost model at a later time. If the problem persists, contact your organization administrator or visit our <0>Status Page</0> for known outages.",
+        "title": "This step is temporarily unavailable"
+      },
+      "sub_title": "Select one or more sources to this cost model. You can skip this step and assign the cost model to a source at a later time. A source will be unavailable for selection if a cost model is already assigned to it.",
+      "title": "Assign sources to the cost model (optional)"
+    },
+    "source_table": {
+      "active_filters": "Active filters:",
+      "already_assigned": "Cannot assigned a source that has already a cost model assigned to it",
+      "clear_all_filters": "Clear all filters",
+      "column_cost_model": "Cost model assigned",
+      "default_cost_model": "Default cost model",
+      "filter_placeholder": "Filter by name...",
+      "filter_section_aria_label": "Cost model filter sources",
+      "pagination_section_aria_label": "bottom toolbar section - pagination",
+      "results_text": "Results {{num}}",
+      "select_filter_type": "Select filter type",
+      "table_aria_label": "assign sources to cost model table",
+      "toolbar_results_section": "filter results section"
+    },
+    "steps": {
+      "general_info": "Enter information",
+      "markup": "Set markup or discount",
+      "price_list": "Price list",
+      "review": "Review details",
+      "sources": "Assign a source to the cost model"
+    },
+    "title": "Create a cost model",
+    "warning_source": "This source is assigned to {{ cost_model }} cost model. You will have to unassigned it first",
+    "warning_sources": "Cannot assign cost model to a source that is already assigned to another one"
+  },
+  "currency_abbreviations": {
+    "billion": "B",
+    "million": "M",
+    "quadrillion": "q",
+    "thousand": "K",
+    "trillion": "t"
+  },
+  "dashboard": {
+    "cumulative_cost_comparison": "Cumulative cost comparison ({{units}})",
+    "daily_usage_comparison": "Daily usage comparison ({{units}})",
+    "database_title": "Database services cost",
+    "network_title": "Network services cost",
+    "storage_title": "Storage services usage",
+    "total_cost_tooltip": "This total cost is the sum of the infrastructure cost {{infrastructureCost}} and supplementary cost {{supplementaryCost}}",
+    "usage": "Usage",
+    "widget_subtitle": "{{startDate}} $t(months.{{month}})"
+  },
+  "description": "Description",
+  "details": {
+    "actions": {
+      "export": "Export data",
+      "price_list": "View all price lists"
+    },
+    "clusters_modal_title": "$t(group_by.values.{{groupBy}}) {{name}} clusters",
+    "column_management": {
+      "aria_label": "Table column management",
+      "cancel": "Cancel",
+      "desc": "Selected categories will be displayed in the table",
+      "save": "Save",
+      "select_all": "Select all",
+      "title": "Manage columns"
+    },
+    "cost_value": "Cost: {{value}}",
+    "empty_state": "Processing data to generate a list of all services that sums to a total cost...",
+    "month_over_month_change": "Month over month change",
+    "more_clusters": ", {{value}} more...",
+    "more_tags": ", {{value}} more...",
+    "price_list": {
+      "modal": {
+        "applied_usage_date_range": "Applied usage date range",
+        "applied_usage_range": "Applied usage range",
+        "hours": "hourly",
+        "metric": "Metric",
+        "metric_display": "{{display}} tier {{index}} ({{ unit }})",
+        "month": "monthly",
+        "no_match": "No rates were found",
+        "no_range_set": "No range set",
+        "not_available": "N/A",
+        "title": "{{name}} cluster price list",
+        "value": "Value"
+      }
+    },
+    "resource_names": "$t(group_by.values.{{groupBy}}) names",
+    "summary_modal_title": "{{name}} $t(group_by.top_values.{{groupBy}})s",
+    "tag_names": "Tag names",
+    "tags_modal_title": "$t(group_by.values.{{groupBy}}) {{name}} related tags",
+    "total_cost": "Total cost",
+    "usage": {
+      "cpu_capacity": "Capacity - {{value}} {{units}}",
+      "cpu_limit": "Limit - {{value}} {{units}}",
+      "cpu_requests": "Requests - {{value}} {{units}}",
+      "cpu_requests_unused_label": "Unrequested capacity",
+      "cpu_requests_unused_units": "{{units}} ({{percentage}}% of capacity)",
+      "cpu_usage": "Usage - {{value}} {{units}}",
+      "cpu_usage_unused_label": "Unused capacity",
+      "cpu_usage_unused_units": "{{units}} ({{percentage}}% of capacity)",
+      "memory_capacity": "Capacity - {{value}} {{units}}",
+      "memory_limit": "Limit - {{value}} {{units}}",
+      "memory_requests": "Requests - {{value}} {{units}}",
+      "memory_requests_unused_label": "Unrequested capacity",
+      "memory_requests_unused_units": "{{units}} ({{percentage}}% of capacity)",
+      "memory_usage": "Usage - {{value}} {{units}}",
+      "memory_usage_unused_label": "Unused capacity",
+      "memory_usage_unused_units": "{{units}} ({{percentage}}% of capacity)"
+    },
+    "view_all": "View all $t(group_by.top_values.{{groupBy}})s"
+  },
+  "dialog": {
+    "cancel": "Cancel",
+    "close": "Close",
+    "deleteCostModel": "Delete cost model",
+    "deleteMarkup": "Delete markup rate",
+    "deleteRate": "Delete rate",
+    "deleteSource": "Unassign source",
+    "delete_cost_model_body_green": "This action will delete {{ cost_model }} cost model from the system. This action cannot be undone.",
+    "delete_cost_model_body_red": "You must unassign any sources before you can delete this cost model.",
+    "delete_cost_model_body_red_costmodel_delete": "The following sources are assigned to my production cost model:",
+    "delete_cost_model_title": "Delete cost model",
+    "delete_source_from_cost_model_body": "This will remove the assignment of {{ source }} from the {{ cost_model }} cost model. You can then assign the cost model to a new source.",
+    "delete_source_from_cost_model_title": "Unassign source",
+    "markup": {
+      "body": "This action will delete the markup from the {{ cost_model }} cost model. Any calculations that can be made with this markup rate will no longer be available.",
+      "title": "Delete markup from {{ cost_model }} cost model?"
+    },
+    "rate": {
+      "assigned": "which is assigned to the following sources:",
+      "body": "This action will remove <0>{{metric}}</0> rate from <1>{{cm}}</1>",
+      "title": "Delete rate"
+    },
+    "title": "Delete {{rate.metric.label_metric}}-{{rate.metric.label_measurement}} ({{rate.metric.label_measurement_unit}}) rate?"
+  },
+  "docs": {
+    "add_ocp_sources": "https://access.redhat.com/documentation/en-us/cost_management_service/2021/html-single/getting_started_with_cost_management/index#assembly-adding-openshift-container-platform-source",
+    "config_cost_models": "https://access.redhat.com/documentation/en-us/cost_management_service/2021/html-single/using_cost_models/index#assembly-setting-up-cost-models",
+    "cost_model_terminology": "https://access.redhat.com/documentation/en-us/cost_management_service/2021/html-single/using_cost_models/index#cost-model-terminology",
+    "using_cost_models": "https://access.redhat.com/documentation/en-us/cost_management_service/2021/html-single/using_cost_models/index"
+  },
+  "empty_filter_state": {
+    "subtitle": "Sorry, no data with the given filter was found.",
+    "title": "No match found"
+  },
+  "error_state": {
+    "unauthorized_desc": "Contact the cost management administrator to provide access to this application",
+    "unauthorized_title": "You don't have access to the Cost management application",
+    "unexpected_desc": "We encountered an unexpected error. Contact your administrator.",
+    "unexpected_title": "Oops!"
+  },
+  "explorer": {
+    "daily_column_title": "{{date}}-$t(months_abbr.{{month}})",
+    "date_range": {
+      "current_month_to_date": "Month to date",
+      "last_sixty_days": "Last 60 days",
+      "last_thirty_days": "Last 30 days",
+      "previous_month_to_date": "Previous month and month to date"
+    },
+    "no_data": "no data",
+    "org_unit_column_title": "Names",
+    "perspective": {
+      "aws": "Amazon Web Services",
+      "aws_cloud": "Amazon Web Services filtered by OpenShift",
+      "azure": "Microsoft Azure",
+      "azure_cloud": "Microsoft Azure filtered by OpenShift",
+      "gcp": "Google Cloud Platform",
+      "ibm": "IBM Cloud",
+      "ocp": "All OpenShift cost",
+      "ocp_cloud": "All cloud filtered by OpenShift",
+      "ocp_supplementary": "OpenShift supplementary cost",
+      "ocp_usage": "OpenShift usage"
+    },
+    "title": {
+      "aws": "Amazon Web Services - Top 5 Costliest",
+      "aws_cloud": "Amazon Web Services filtered by OpenShift - Top 5 Costliest",
+      "azure": "Microsoft Azure - Top 5 Costliest",
+      "azure_cloud": "Microsoft Azure filtered by OpenShift - Top 5 Costliest",
+      "gcp": "Google Cloud Platform - Top 5 Costliest",
+      "ibm": "IBM Cloud - Top 5 Costliest",
+      "ocp": "All OpenShift cost - Top 5 Costliest",
+      "ocp_cloud": "All cloud filtered by OpenShift - Top 5 Costliest",
+      "ocp_supplementary": "OpenShift supplementary cost - Top 5 Costliest",
+      "ocp_usage": "OpenShift usage - Top 5 Costliest"
+    }
+  },
+  "export": {
+    "aggregate_type": "Select aggregate type",
+    "all": "All",
+    "cancel": "Cancel",
+    "confirm": "Generate and download",
+    "daily": "Daily",
+    "file": {
+      "daily": "daily",
+      "monthly": "monthly",
+      "name": "{{provider}}-$t(group_by.top_values.{{groupBy}})-$t(export.file.{{resolution}})-{{date}}"
+    },
+    "heading": "Aggregates of the following {{groupBy}}s will be exported to a .csv file.",
+    "monthly": "Monthly",
+    "resolution_daily": "Daily",
+    "resolution_monthly": "Monthly",
+    "selected": "Selected {{groupBy}}s",
+    "selected_tags": "Selected tags",
+    "time_scope_current": "Current ({{date}})",
+    "time_scope_previous": "Previous ({{date}})",
+    "time_scope_title": "Select month",
+    "title": "Export"
+  },
+  "filter": {
+    "active_filters": "Active filters",
+    "name": "Name",
+    "results_clear": "Clear all filters",
+    "results_count": "{{count}} Results",
+    "type": "Type",
+    "type_aria_label": "Select filter type",
+    "type_empty": "Choose source type"
+  },
+  "filter_by": {
+    "account": {
+      "button_aria_label": "Filter button for account name",
+      "input_aria_label": "Input for account name",
+      "placeholder": "Filter by account"
+    },
+    "cluster": {
+      "button_aria_label": "Filter button for cluster name",
+      "input_aria_label": "Input for cluster name",
+      "placeholder": "Filter by cluster"
+    },
+    "name": {
+      "button_aria_label": "Filter button for name",
+      "input_aria_label": "Input for name",
+      "placeholder": "Filter by name"
+    },
+    "node": {
+      "button_aria_label": "Filter button for node name",
+      "input_aria_label": "Input for node name",
+      "placeholder": "Filter by node"
+    },
+    "org_unit": {
+      "aria_label": "Organizational units",
+      "placeholder": "Choose unit"
+    },
+    "project": {
+      "button_aria_label": "Filter button for project name",
+      "input_aria_label": "Input for project name",
+      "placeholder": "Filter by project"
+    },
+    "region": {
+      "button_aria_label": "Filter button for region name",
+      "input_aria_label": "Input for region name",
+      "placeholder": "Filter by region"
+    },
+    "resource_location": {
+      "button_aria_label": "Filter button for region name",
+      "input_aria_label": "Input for region name",
+      "placeholder": "Filter by region"
+    },
+    "service": {
+      "button_aria_label": "Filter button for service name",
+      "input_aria_label": "Input for service name",
+      "placeholder": "Filter by service"
+    },
+    "service_name": {
+      "button_aria_label": "Filter button for service name",
+      "input_aria_label": "Input for service name",
+      "placeholder": "Filter by service"
+    },
+    "subscription_guid": {
+      "button_aria_label": "Filter button for account name",
+      "input_aria_label": "Input for account name",
+      "placeholder": "Filter by account"
+    },
+    "tag_key": {
+      "aria_label": "Tag keys",
+      "placeholder": "Choose key"
+    },
+    "tag_value": {
+      "aria_label": "Tag values",
+      "button_aria_label": "Filter button for tag value",
+      "input_placeholder": "Filter by value",
+      "placeholder": "Choose value"
+    },
+    "values": {
+      "account": "Account",
+      "cluster": "Cluster",
+      "name": "Name",
+      "node": "Node",
+      "org_unit_id": "Organizational unit",
+      "project": "Project",
+      "region": "Region",
+      "resource_location": "Region",
+      "service": "Service",
+      "service_name": "Service",
+      "subscription_guid": "Account",
+      "tag": "Tag"
+    }
+  },
+  "for_date": "{{value}} for {{startDate}} $t(months_abbr.{{month}})",
+  "gcp_dashboard": {
+    "compute_title": "Compute instances usage",
+    "cost_title": "Google Cloud Platform Services cost",
+    "cost_trend_title": "Google Cloud Platform Services cumulative cost comparison ({{units}})",
+    "daily_cost_trend_title": "Google Cloud Platform Services daily cost comparison ({{units}})"
+  },
+  "group_by": {
+    "all": "All $t(group_by.values.{{groupBy}}, { 'count': 5 })",
+    "details": "$t(group_by.values.{{groupBy}}, { 'count': 3 })",
+    "label": "Group by",
+    "org_unit_aria_label": "Organizational units",
+    "org_unit_placeholder": "Choose unit",
+    "tag": "Tag",
+    "tag_key_aria_label": "Tag keys",
+    "tag_key_placeholder": "Choose key",
+    "top": "Top $t(group_by.top_values.{{groupBy}}, { 'count': 5 })",
+    "top_values": {
+      "account": "account",
+      "cluster": "cluster",
+      "instance_type": "instance type",
+      "node": "node",
+      "org_unit_id": "organizational unit",
+      "pod": "pod",
+      "project": "project",
+      "region": "region",
+      "resource_location": "region",
+      "service": "service",
+      "service_name": "service",
+      "subscription_guid": "account"
+    },
+    "values": {
+      "account": "Account",
+      "cluster": "Cluster",
+      "instance_type": "Instance type",
+      "node": "Node",
+      "org_unit_id": "Organizational unit",
+      "pod": "Pod",
+      "project": "Project",
+      "region": "Region",
+      "resource_location": "Region",
+      "service": "Service",
+      "service_name": "Service",
+      "subscription_guid": "Account",
+      "tag": "Tag"
+    }
+  },
+  "ibm_dashboard": {
+    "compute_title": "Compute instances usage",
+    "cost_title": "IBM Cloud Services cost",
+    "cost_trend_title": "IBM Cloud Services cumulative cost comparison ({{units}})",
+    "daily_cost_trend_title": "IBM Cloud Services daily cost comparison ({{units}})"
+  },
+  "inactive_sources": {
+    "go_to_sources": "Go to Sources for more information",
+    "title": "A problem was detected with {{value}}",
+    "title_multiple": "A problem was detected with the following sources"
+  },
+  "learn_more": "Learn more",
+  "loading": "Loading",
+  "loading_state": {
+    "sources_desc": "Searching for your sources. Do not refresh the browser",
+    "sources_title": "Looking for sources..."
+  },
+  "maintenance": {
+    "empty_state_desc": "$t(cost_management) is currently undergoing scheduled maintenance and will be unavailable from 13:00 - 19:00 UTC (09:00 AM - 03:00 PM EDT).",
+    "empty_state_info": "For more information visit ",
+    "empty_state_thanks": "We will be back soon. Thank you for your patience!."
+  },
+  "months": [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
+  ],
+  "months_abbr": [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec"
+  ],
+  "name": "Name",
+  "navigation": {
+    "aws_details": "Amazon Web Services Details",
+    "aws_details_breakdown": "Amazon Web Services Details Breakdown",
+    "azure_details": "Microsoft Azure details",
+    "azure_details_breakdown": "Microsoft Azure Details Breakdown",
+    "cost_models": "Cost models",
+    "explorer": "Cost Explorer",
+    "gcp_details": "Google Cloud Platform Details",
+    "gcp_details_breakdown": "Google Cloud Platform Details Breakdown",
+    "ibm_details": "IBM Cloud Details",
+    "ibm_details_breakdown": "IBM Cloud Details Breakdown",
+    "ocp_details": "OpenShift Details",
+    "ocp_details_breakdown": "OpenShift Details Breakdown"
+  },
+  "no_auth_state": {
+    "aws_service_name": "Amazon Web Services in $t(cost_management)",
+    "azure_service_name": "Microsoft Azure in $t(cost_management)",
+    "cost_models_service_name": "Cost Models in $t(cost_management)",
+    "gcp_service_name": "Google Cloud Platform in $t(cost_management)",
+    "ibm_service_name": "IBM Cloud in $t(cost_management)",
+    "ocp_service_name": "OpenShift in $t(cost_management)"
+  },
+  "no_data_for_date": "No data available for {{startDate}} $t(months_abbr.{{month}})",
+  "no_data_state": {
+    "desc": "We have detected a source, but we are not done processing the incoming data. The time to process could take up to 24 hours. Try refreshing the page at a later time.",
+    "refresh": "Refresh this page",
+    "title": "Still processing the data"
+  },
+  "no_match_found_state": {
+    "desc": "Sorry, no source with the given filter was found.",
+    "title": "No match found"
+  },
+  "no_providers_state": {
+    "aws_desc": "Add an Amazon Web Services account to see a total cost breakdown of your spend by accounts, organizational units, services, regions, or tags.",
+    "aws_title": "Track your Amazon Web Services spending!",
+    "azure_desc": "Add a Microsoft Azure account to see a total cost breakdown of your spend by accounts, services, regions, or tags.",
+    "azure_title": "Track your Microsoft Azure spending!",
+    "gcp_desc": "Add a Google Cloud Platform account to see a total cost breakdown of your spend by accounts, services, regions, or tags.",
+    "gcp_title": "Track your Google Cloud Platform spending!",
+    "get_started": "Get started with Sources",
+    "ibm_desc": "Add an IBM Cloud account to see a total cost breakdown of your spend by accounts, services, regions, or tags.",
+    "ibm_title": "Track your IBM Cloud spending!",
+    "ocp_add_sources": "Add an OpenShift cluster to $t(cost_management)",
+    "ocp_desc": "Add an OpenShift Container Platform cluster to see a total cost breakdown of your pods by cluster, node, project, or labels.",
+    "ocp_title": "Track your OpenShift spending!",
+    "overview_desc": "Add a source, like an OpenShift Container Platform cluster or a cloud services account, to see a total cost breakdown as well as usage information like instance counts and storage.",
+    "overview_title": "Track your spending!"
+  },
+  "no_rates_state": {
+    "desc": "Sorry, no rates related to cluster {{cluster}} were set.",
+    "title": "No rates found"
+  },
+  "ocp": {
+    "cpu_usage_and_requests": "CPU usage and requests",
+    "daily_usage_request_comparison": "Daily usage and requests comparison ({{units}})",
+    "memory_usage_and_requests": "Memory usage and requests",
+    "requests": "Requests",
+    "volume_usage_and_requests": "Volume usage and requests"
+  },
+  "ocp_cloud_dashboard": {
+    "compute_title": "Compute services usage",
+    "cost_title": "All cloud filtered by OpenShift cost",
+    "cost_trend_title": "All cloud filtered by OpenShift cumulative cost comparison ({{units}})",
+    "daily_cost_trend_title": "All cloud filtered by OpenShift daily cost comparison ({{units}})"
+  },
+  "ocp_dashboard": {
+    "cost_title": "All OpenShift cost",
+    "cost_trend_title": "All OpenShift cumulative cost comparison ({{units}})",
+    "daily_cost_trend_title": "All OpenShift daily cost comparison ({{units}})"
+  },
+  "ocp_details": {
+    "infrastructure_cost": "Infrastructure cost",
+    "infrastructure_cost_desc": "The cost based on raw usage data from the underlying infrastructure.",
+    "supplementary_aria_label": "A description of infrastructure and supplementary cost",
+    "supplementary_cost": "Supplementary cost",
+    "supplementary_cost_desc": "All costs not directly attributed to the infrastructure. These costs are determined by applying a price list within a cost model to OpenShift cluster metrics.",
+    "title": "OpenShift details"
+  },
+  "ocp_infrastructure_dashboard": {
+    "cost_title": "OpenShift infrastructure cost",
+    "cost_trend_title": "OpenShift cumulative infrastructure cost comparison ({{units}})",
+    "daily_cost_trend_title": "OpenShift daily infrastructure cost comparison ({{units}})"
+  },
+  "ocp_supplementary_dashboard": {
+    "cost_title": "OpenShift supplementary cost",
+    "cost_trend_title": "OpenShift cumulative supplementary cost comparison ({{units}})",
+    "daily_cost_trend_title": "OpenShift daily supplementary cost comparison ({{units}})"
+  },
+  "ocp_usage_dashboard": {
+    "cost_title": "OpenShift usage cost",
+    "cost_trend_title": "Metering cumulative cost comparison ({{units}})",
+    "cpu_title": "OpenShift CPU usage and requests",
+    "memory_title": "OpenShift memory usage and requests",
+    "volume_title": "OpenShift volume usage and requests"
+  },
+  "onboarding": {
+    "type_options": {
+      "aws": "Amazon Web Services (AWS)",
+      "azure": "Microsoft Azure",
+      "gcp": "Google Cloud Platform",
+      "ocp": "Red Hat OpenShift Container Platform"
+    }
+  },
+  "overview": {
+    "aws": "Amazon Web Services",
+    "aws_desc": "Raw cost from Amazon Web Services infrastructure.",
+    "azure": "Microsoft Azure",
+    "azure_desc": "Raw cost from Azure infrastructure.",
+    "gcp": "Google Cloud Platform",
+    "gcp_desc": "Raw cost from Google Cloud Platform infrastructure.",
+    "ibm": "IBM Cloud",
+    "ibm_desc": "Raw cost from IBM Cloud infrastructure.",
+    "infrastructure": "Infrastructure",
+    "ocp": "OpenShift",
+    "ocp_cloud": "OpenShift cloud infrastructure",
+    "ocp_cloud_desc": "Infrastructure cost attributed to OpenShift Container Platform, based on a subset of cloud cost data.",
+    "ocp_desc": "Total cost for OpenShift Container Platform, comprising the infrastructure cost and cost calculated from metrics.",
+    "perspective": {
+      "aws": "Amazon Web Services",
+      "aws_cloud": "Amazon Web Services filtered by OpenShift",
+      "azure": "Microsoft Azure",
+      "azure_cloud": "Microsoft Azure filtered by OpenShift",
+      "gcp": "Google Cloud Platform",
+      "ibm": "IBM Cloud",
+      "label": "Perspective",
+      "ocp_all": "All OpenShift",
+      "ocp_cloud": "All cloud filtered by OpenShift",
+      "ocp_infrastructure": "OpenShift infrastructure",
+      "ocp_supplementary": "OpenShift supplementary",
+      "ocp_usage": "OpenShift usage"
+    }
+  },
+  "page_cost_models": {
+    "assigned_sources": "Assigned sources",
+    "aws": "Amazon Web Services",
+    "azure": "Microsoft Azure",
+    "can_delete_description": "This action will delete {{ name }} cost model from the system. This action cannot be undone",
+    "cancel": "Cancel",
+    "cannot_delete_description_body": "The following sources are assigned to {{ name }} cost model:",
+    "cannot_delete_description_head": "You must unassign any sources before you can delete this cost model.",
+    "create_cost_model": "Create cost model",
+    "delete": "Delete",
+    "delete_cost_model": "Delete cost model",
+    "delete_title": "Delete cost model",
+    "filter_by_description": "Filter by description",
+    "filter_by_name": "Filter by name",
+    "filter_by_source_type": "Filter by source type",
+    "header_popover": "A cost model allows you to associate a price to metrics provided by your sources to charge for utilization of resources. <0>Learn more</0>",
+    "header_title": "Cost models",
+    "last_change": "Last change",
+    "no_cost_models_description": "Create a cost model to start calculating your hybrid cloud costs using custom price lists, markups, or both. Click on the button below to begin the journey.",
+    "no_cost_models_learn_more": "Read about setting up a cost model",
+    "no_cost_models_title": "What is your hybrid cloud costing you?",
+    "ocp": "OpenShift Container Platform",
+    "source_type": "Source type"
+  },
+  "percent": "{{value}}%",
+  "percent_of_cost": "{{value}} % of cost",
+  "percent_of_total": "{{value}} {{units}} ({{percent}}%)",
+  "rbac": {
+    "error_description": "There was a problem receiving user permissions. Refreshing this page may fix it. If it does not, please contact your admin.",
+    "error_title": "Failed to get RBAC information"
+  },
+  "settings": "Settings",
+  "since_date": "{{startDate}} $t(months.{{month}})",
+  "source_details": {
+    "filter": {
+      "placeholder": "Filter by source {{value}}"
+    },
+    "type": {
+      "AWS": "AWS",
+      "AZURE": "Microsoft Azure",
+      "GCP": "Google Cloud Platform",
+      "OCP": "Red Hat OpenShift"
+    }
+  },
+  "status_url": "https://status.redhat.com",
+  "tag": {
+    "heading_key": "Key",
+    "heading_value": "Value",
+    "title": "Tags ({{value}})"
+  },
+  "toolbar": {
+    "bulk_select": {
+      "aria_deselect": "Deselect all items",
+      "aria_select": "Select all items",
+      "select_all": "Select all ({{value}} items)",
+      "select_none": "Select none (0 items)",
+      "select_page": "Select page ({{value}} items)"
+    },
+    "filterby": "Filter by {{ name }}",
+    "pricelist": {
+      "add_rate": "Add rate",
+      "measurement": "Measurement",
+      "measurement_placeholder": "Filter by measurements",
+      "metric": "Metric",
+      "metric_placeholder": "Filter by metrics"
+    },
+    "sources": {
+      "assign_sources": "Assign source",
+      "category": {
+        "name": "Name"
+      },
+      "filter_placeholder": "Filter by name",
+      "lower": {
+        "description": "description",
+        "name": "name"
+      },
+      "primary": {
+        "source_type": "Source type"
+      },
+      "secondary": {
+        "aws": "Amazon Web Services",
+        "azure": "Microsoft Azure",
+        "none": "Select source type",
+        "ocp": "Red Hat OpenShift Container Platform"
+      }
+    }
+  },
+  "unit_tooltips": {
+    "core-hours": "{{value}} core-hours",
+    "gb": "{{value}} GB",
+    "gb-hours": "{{value}} GB-hours",
+    "gb-mo": "{{value}} GB-month",
+    "gibibyte month": "{{value}} GiB-month",
+    "hour": "{{value}} hours",
+    "hrs": "{{value}} hours",
+    "usd": "{{value}}",
+    "vm-hours": "{{value}} VM-hours"
+  },
+  "units": {
+    "": "",
+    "core-hours": "core-hours",
+    "gb": "GB",
+    "gb-hours": "GB-hours",
+    "gb-mo": "GB-month",
+    "gibibyte month": "GiB-month",
+    "hour": "hours",
+    "hours": "hours",
+    "hrs": "hours",
+    "tag-mo": "Tag-month",
+    "usd": "$USD",
+    "vm-hours": "VM-hours"
+  }
+}

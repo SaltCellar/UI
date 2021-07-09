@@ -23,8 +23,10 @@ import {
   isDataAvailable,
   isSeriesHidden,
 } from 'components/charts/common/chartUtils';
+import { createIntlEnv } from 'components/i18n/localeEnv';
 import { getDate } from 'date-fns';
-import i18next from 'i18next';
+import messages from 'locales/messages';
+// import i18next from 'i18next';
 import React from 'react';
 import { FormatOptions, ValueFormatter } from 'utils/formatValue';
 import { noop } from 'utils/noop';
@@ -102,20 +104,20 @@ class TrendChart extends React.Component<TrendChartProps, State> {
     } = this.props;
 
     const key = showUsageLegendLabel
-      ? 'chart.usage_legend_label'
+      ? messages.ChartUsageLegendlabel
       : showSupplementaryLabel
-      ? 'chart.cost_supplementary_legend_label'
+      ? messages.ChartCostSupplementaryLegendLabel
       : showInfrastructureLabel
-      ? 'chart.cost_infrastructure_legend_label'
-      : 'chart.cost_legend_label';
+      ? messages.ChartCostInfrastructureLegendLabel
+      : messages.ChartCostLegendLabel;
 
     const tooltipKey = showUsageLegendLabel
-      ? 'chart.usage_legend_tooltip'
+      ? messages.ChartUsageLegendTooltip
       : showSupplementaryLabel
-      ? 'chart.cost_supplementary_legend_tooltip'
+      ? messages.ChartCostSupplementaryLegendTooltip
       : showInfrastructureLabel
-      ? 'chart.cost_infrastructure_legend_tooltip'
-      : 'chart.cost_legend_tooltip';
+      ? messages.ChartCostInfrastructureLegendTooltip
+      : messages.ChartCostLegendTooltip;
 
     // Show all legends, regardless of length -- https://github.com/project-koku/koku-ui/issues/248
 
@@ -163,12 +165,12 @@ class TrendChart extends React.Component<TrendChartProps, State> {
         childName: 'forecast',
         data: forecastData,
         legendItem: {
-          name: getCostRangeString(forecastData, 'chart.cost_forecast_legend_label', false, false),
+          name: getCostRangeString(forecastData, messages.ChartCostForecastLegendLabel, false, false),
           symbol: {
             fill: chartStyles.forecastDataColorScale[0],
             type: 'minus',
           },
-          tooltip: getCostRangeString(forecastData, 'chart.cost_forecast_legend_tooltip', false, false),
+          tooltip: getCostRangeString(forecastData, messages.ChartCostForecastLegendTooltip, false, false),
         },
         style: {
           data: {
@@ -181,12 +183,12 @@ class TrendChart extends React.Component<TrendChartProps, State> {
         childName: 'forecastCone',
         data: forecastConeData,
         legendItem: {
-          name: getCostRangeString(forecastConeData, 'chart.cost_forecast_cone_legend_label', false, false),
+          name: getCostRangeString(forecastConeData, messages.ChartCostForecastConeLegendLabel, false, false),
           symbol: {
             fill: chartStyles.forecastConeDataColorScale[0],
             type: 'triangleLeft',
           },
-          tooltip: getCostRangeString(forecastConeData, 'chart.cost_forecast_cone_legend_tooltip', false, false),
+          tooltip: getCostRangeString(forecastConeData, messages.ChartCostForecastConeLegendTooltip, false, false),
         },
         style: {
           data: {
@@ -329,25 +331,20 @@ class TrendChart extends React.Component<TrendChartProps, State> {
       title,
     } = this.props;
     const { cursorVoronoiContainer, hiddenSeries, series, width } = this.state;
-
+    const intl = createIntlEnv();
     const domain = getDomain(series, hiddenSeries);
     const endDate = this.getEndDate();
     const midDate = Math.floor(endDate / 2);
-
-    // Federated modules may not have access to the i18next package
-    let tooltipTitle;
-    if (i18next && i18next.t) {
-      tooltipTitle = datum => i18next.t('chart.day_of_month_title', { day: datum.x });
-    } else {
-      tooltipTitle = datum => `Day ${datum.x}`;
-    }
 
     // Clone original container. See https://issues.redhat.com/browse/COST-762
     const container = cursorVoronoiContainer
       ? React.cloneElement(cursorVoronoiContainer, {
           disable: !isDataAvailable(series, hiddenSeries),
           labelComponent: (
-            <ChartLegendTooltip legendData={getLegendData(series, hiddenSeries, true)} title={tooltipTitle} />
+            <ChartLegendTooltip
+              legendData={getLegendData(series, hiddenSeries, true)}
+              title={datum => intl.formatMessage(messages.ChartDayOfTheMonth, { day: datum.x })}
+            />
           ),
         })
       : undefined;

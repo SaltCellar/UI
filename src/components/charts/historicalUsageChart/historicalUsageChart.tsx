@@ -24,8 +24,9 @@ import {
   isDataAvailable,
   isSeriesHidden,
 } from 'components/charts/common/chartUtils';
+import { createIntlEnv } from 'components/i18n/localeEnv';
 import { getDate } from 'date-fns';
-import i18next from 'i18next';
+import messages from 'locales/messages';
 import React from 'react';
 import { FormatOptions, ValueFormatter } from 'utils/formatValue';
 import { noop } from 'utils/noop';
@@ -101,12 +102,12 @@ class HistoricalUsageChart extends React.Component<HistoricalUsageChartProps, St
       previousUsageData,
     } = this.props;
 
-    const limitKey = 'chart.limit_legend_label';
-    const limitTooltipKey = 'chart.limit_legend_tooltip';
-    const requestKey = 'chart.requests_legend_label';
-    const requestTooltipKey = 'chart.requests_legend_tooltip';
-    const usageKey = 'chart.usage_legend_label';
-    const usageTooltipKey = 'chart.usage_legend_tooltip';
+    const limitKey = messages.ChartLimitLegendLabel;
+    const limitTooltipKey = messages.ChartLimitLegendTooltip;
+    const requestKey = messages.ChartRequestsLegendLabel;
+    const requestTooltipKey = messages.ChartRequestsLegendTooltip;
+    const usageKey = messages.ChartUsageLegendlabel;
+    const usageTooltipKey = messages.ChartUsageLegendTooltip;
 
     // Show all legends, regardless of length -- https://github.com/project-koku/koku-ui/issues/248
 
@@ -332,7 +333,7 @@ class HistoricalUsageChart extends React.Component<HistoricalUsageChartProps, St
       yAxisLabel,
     } = this.props;
     const { cursorVoronoiContainer, hiddenSeries, series, width } = this.state;
-
+    const intl = createIntlEnv();
     const domain = getDomain(series, hiddenSeries);
     const endDate = this.getEndDate();
     const midDate = Math.floor(endDate / 2);
@@ -350,7 +351,7 @@ class HistoricalUsageChart extends React.Component<HistoricalUsageChartProps, St
           labelComponent: (
             <ChartLegendTooltip
               legendData={getLegendData(series, hiddenSeries, true)}
-              title={datum => i18next.t('chart.day_of_month_title', { day: datum.x })}
+              title={datum => intl.formatMessage(messages.ChartDayOfTheMonth, { day: datum.x })}
             />
           ),
         })

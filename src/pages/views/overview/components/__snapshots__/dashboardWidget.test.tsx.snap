@@ -1,38 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`subtitle is translated with date range 1`] = `
-Array [
-  "dashboard.widget_subtitle",
-  Object {
-    "count": 2,
-    "endDate": "formated date",
-    "month": 1,
-    "startDate": "formated date",
-  },
-]
-`;
+exports[`subtitle is translated with date range 1`] = `"EN 1-15 January"`;
 
-exports[`subtitle is translated with single date 1`] = `
-Array [
-  "dashboard.widget_subtitle",
-  Object {
-    "count": 1,
-    "endDate": "formated date",
-    "month": 1,
-    "startDate": "formated date",
-  },
-]
-`;
+exports[`subtitle is translated with single date 1`] = `"EN 1 January"`;
 
-exports[`title is translated 1`] = `
-Array [
-  "title",
-  Object {
-    "endDate": "formated date",
-    "month": 1,
-    "startDate": "formated date",
-  },
-]
-`;
+exports[`title is translated 1`] = `"test title"`;
 
-exports[`trend title is translated 1`] = `undefined`;
+exports[`trend title is translated 1`] = `"test trend title"`;

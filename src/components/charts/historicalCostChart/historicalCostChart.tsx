@@ -24,8 +24,9 @@ import {
   isDataAvailable,
   isSeriesHidden,
 } from 'components/charts/common/chartUtils';
+import { createIntlEnv } from 'components/i18n/localeEnv';
 import { getDate } from 'date-fns';
-import i18next from 'i18next';
+import messages from 'locales/messages';
 import React from 'react';
 import { FormatOptions, ValueFormatter } from 'utils/formatValue';
 import { noop } from 'utils/noop';
@@ -95,10 +96,10 @@ class HistoricalCostChart extends React.Component<HistoricalCostChartProps, Stat
       previousInfrastructureCostData,
     } = this.props;
 
-    const costKey = 'chart.cost_legend_label';
-    const costInfrastructureKey = 'chart.cost_infrastructure_legend_label';
-    const costInfrastructureTooltipKey = 'chart.cost_infrastructure_legend_tooltip';
-    const costTooltipKey = 'chart.cost_legend_tooltip';
+    const costKey = messages.ChartCostLegendLabel;
+    const costInfrastructureKey = messages.ChartCostInfrastructureLegendLabel;
+    const costInfrastructureTooltipKey = messages.ChartCostInfrastructureLegendTooltip;
+    const costTooltipKey = messages.ChartCostLegendTooltip;
 
     // Show all legends, regardless of length -- https://github.com/project-koku/koku-ui/issues/248
 
@@ -289,7 +290,7 @@ class HistoricalCostChart extends React.Component<HistoricalCostChartProps, Stat
       yAxisLabel,
     } = this.props;
     const { cursorVoronoiContainer, hiddenSeries, series, width } = this.state;
-
+    const intl = createIntlEnv();
     const domain = getDomain(series, hiddenSeries);
     const endDate = this.getEndDate();
     const midDate = Math.floor(endDate / 2);
@@ -307,7 +308,7 @@ class HistoricalCostChart extends React.Component<HistoricalCostChartProps, Stat
           labelComponent: (
             <ChartLegendTooltip
               legendData={getLegendData(series, hiddenSeries, true)}
-              title={datum => i18next.t('chart.day_of_month_title', { day: datum.x })}
+              title={datum => intl.formatMessage(messages.ChartDayOfTheMonth, { day: datum.x })}
             />
           ),
         })

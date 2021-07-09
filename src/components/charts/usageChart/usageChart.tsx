@@ -23,8 +23,9 @@ import {
   isDataAvailable,
   isSeriesHidden,
 } from 'components/charts/common/chartUtils';
+import { createIntlEnv } from 'components/i18n/localeEnv';
 import { getDate } from 'date-fns';
-import i18next from 'i18next';
+import messages from 'locales/messages';
 import React from 'react';
 import { FormatOptions, ValueFormatter } from 'utils/formatValue';
 import { noop } from 'utils/noop';
@@ -87,10 +88,10 @@ class UsageChart extends React.Component<UsageChartProps, State> {
   private initDatum = () => {
     const { currentRequestData, currentUsageData, previousRequestData, previousUsageData } = this.props;
 
-    const usageKey = 'chart.usage_legend_label';
-    const usageTooltipKey = 'chart.usage_legend_tooltip';
-    const requestKey = 'chart.requests_legend_label';
-    const requestTooltipKey = 'chart.requests_legend_tooltip';
+    const usageKey = messages.ChartUsageLegendlabel;
+    const usageTooltipKey = messages.ChartUsageLegendTooltip;
+    const requestKey = messages.ChartRequestsLegendLabel;
+    const requestTooltipKey = messages.ChartRequestsLegendTooltip;
 
     // Show all legends, regardless of length -- https://github.com/project-koku/koku-ui/issues/248
 
@@ -271,7 +272,7 @@ class UsageChart extends React.Component<UsageChartProps, State> {
       title,
     } = this.props;
     const { cursorVoronoiContainer, hiddenSeries, series, width } = this.state;
-
+    const intl = createIntlEnv();
     const domain = getDomain(series, hiddenSeries);
     const endDate = this.getEndDate();
     const midDate = Math.floor(endDate / 2);
@@ -283,7 +284,7 @@ class UsageChart extends React.Component<UsageChartProps, State> {
           labelComponent: (
             <ChartLegendTooltip
               legendData={getLegendData(series, hiddenSeries, true)}
-              title={datum => i18next.t('chart.day_of_month_title', { day: datum.x })}
+              title={datum => intl.formatMessage(messages.ChartDayOfTheMonth, { day: datum.x })}
             />
           ),
         })

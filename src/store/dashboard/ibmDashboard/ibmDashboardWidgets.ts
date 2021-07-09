@@ -6,6 +6,7 @@ import {
   ComputedReportItemType,
   ComputedReportItemValueType,
 } from 'components/charts/common/chartDatumUtils';
+import messages from 'locales/messages';
 import { paths } from 'routes';
 import { DashboardChartType } from 'store/dashboard/common/dashboardCommon';
 
@@ -16,12 +17,12 @@ const getId = () => currrentId++;
 
 export const computeWidget: IbmDashboardWidget = {
   id: getId(),
-  titleKey: 'ibm_dashboard.compute_title',
+  titleKey: messages.IBMComputeTitle,
   forecastPathsType: ForecastPathsType.ibm,
   reportPathsType: ReportPathsType.ibm,
   reportType: ReportType.instanceType,
   details: {
-    costKey: 'cost',
+    costKey: messages.Cost,
     formatOptions: {
       fractionDigits: 2,
     },
@@ -31,7 +32,7 @@ export const computeWidget: IbmDashboardWidget = {
     usageFormatOptions: {
       fractionDigits: 0,
     },
-    usageKey: 'dashboard.usage',
+    usageKey: messages.Usage,
   },
   filter: {
     service: 'Compute Engine',
@@ -45,7 +46,7 @@ export const computeWidget: IbmDashboardWidget = {
     formatOptions: {
       fractionDigits: 2,
     },
-    titleKey: 'dashboard.daily_usage_comparison',
+    titleKey: messages.DashboardDailyUsageComparison,
     type: ChartType.daily,
   },
   topItems: {
@@ -62,7 +63,7 @@ export const computeWidget: IbmDashboardWidget = {
 
 export const costSummaryWidget: IbmDashboardWidget = {
   id: getId(),
-  titleKey: 'ibm_dashboard.cost_title',
+  titleKey: messages.IBMCostTitle,
   forecastPathsType: ForecastPathsType.ibm,
   forecastType: ForecastType.cost,
   reportPathsType: ReportPathsType.ibm,
@@ -70,7 +71,7 @@ export const costSummaryWidget: IbmDashboardWidget = {
   details: {
     adjustContainerHeight: true,
     appNavId: 'ibm',
-    costKey: 'cost',
+    costKey: messages.Cost,
     formatOptions: {
       fractionDigits: 2,
     },
@@ -85,8 +86,8 @@ export const costSummaryWidget: IbmDashboardWidget = {
     computedReportItem: ComputedReportItemType.cost,
     computedReportItemValue: ComputedReportItemValueType.total,
     formatOptions: {},
-    dailyTitleKey: 'ibm_dashboard.daily_cost_trend_title',
-    titleKey: 'ibm_dashboard.cost_trend_title',
+    dailyTitleKey: messages.IBMDailyCostTrendTitle,
+    titleKey: messages.IBMCostTrendTitle,
     type: ChartType.rolling,
   },
   topItems: {
@@ -99,11 +100,11 @@ export const costSummaryWidget: IbmDashboardWidget = {
 
 export const databaseWidget: IbmDashboardWidget = {
   id: getId(),
-  titleKey: 'dashboard.database_title',
+  titleKey: messages.DashboardDatabaseTitle,
   reportPathsType: ReportPathsType.ibm,
   reportType: ReportType.database,
   details: {
-    costKey: 'cost',
+    costKey: messages.Cost,
     formatOptions: {
       fractionDigits: 2,
     },
@@ -119,7 +120,7 @@ export const databaseWidget: IbmDashboardWidget = {
     computedReportItem: ComputedReportItemType.cost,
     computedReportItemValue: ComputedReportItemValueType.total,
     formatOptions: {},
-    titleKey: 'dashboard.cumulative_cost_comparison',
+    titleKey: messages.DashboardCumulativeCostComparison,
     type: ChartType.rolling,
   },
   topItems: {
@@ -136,11 +137,11 @@ export const databaseWidget: IbmDashboardWidget = {
 
 export const networkWidget: IbmDashboardWidget = {
   id: getId(),
-  titleKey: 'dashboard.network_title',
+  titleKey: messages.DashboardNetworkTitle,
   reportPathsType: ReportPathsType.ibm,
   reportType: ReportType.network,
   details: {
-    costKey: 'cost',
+    costKey: messages.Cost,
     formatOptions: {
       fractionDigits: 2,
     },
@@ -158,7 +159,7 @@ export const networkWidget: IbmDashboardWidget = {
     computedReportItem: ComputedReportItemType.cost,
     computedReportItemValue: ComputedReportItemValueType.total,
     formatOptions: {},
-    titleKey: 'dashboard.cumulative_cost_comparison',
+    titleKey: messages.DashboardCumulativeCostComparison,
     type: ChartType.rolling,
   },
   topItems: {
@@ -175,11 +176,11 @@ export const networkWidget: IbmDashboardWidget = {
 
 export const storageWidget: IbmDashboardWidget = {
   id: getId(),
-  titleKey: 'dashboard.storage_title',
+  titleKey: messages.DashboardStorageTitle,
   reportPathsType: ReportPathsType.ibm,
   reportType: ReportType.storage,
   details: {
-    costKey: 'cost',
+    costKey: messages.Cost,
     formatOptions: {
       fractionDigits: 2,
     },
@@ -189,7 +190,7 @@ export const storageWidget: IbmDashboardWidget = {
     usageFormatOptions: {
       fractionDigits: 0,
     },
-    usageKey: 'dashboard.usage',
+    usageKey: messages.Usage,
   },
   trend: {
     computedReportItem: ComputedReportItemType.usage,
@@ -197,7 +198,7 @@ export const storageWidget: IbmDashboardWidget = {
     formatOptions: {
       fractionDigits: 2,
     },
-    titleKey: 'dashboard.daily_usage_comparison',
+    titleKey: messages.DashboardDailyUsageComparison,
     type: ChartType.daily,
   },
   topItems: {

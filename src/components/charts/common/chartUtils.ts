@@ -1,5 +1,6 @@
 import { getInteractiveLegendItemStyles } from '@patternfly/react-charts';
-import i18next from 'i18next';
+import { createIntlEnv } from 'components/i18n/localeEnv';
+import messages from 'locales/messages';
 import { FormatOptions, ValueFormatter } from 'utils/formatValue';
 import { DomainTuple, VictoryStyleInterface } from 'victory-core';
 
@@ -26,6 +27,8 @@ export interface ChartSeries {
   legendItem?: ChartLegendItem;
   style?: VictoryStyleInterface;
 }
+
+const intl = createIntlEnv();
 
 // Returns groups of chart names associated with each data series
 export const getChartNames = (series: ChartSeries[]) => {
@@ -96,9 +99,9 @@ export const getTooltipLabel = (datum: any, formatDatumValue: ValueFormatter, fo
     datum.y0 !== undefined && datum.y0 !== null ? formatter(datum.y0, datum.units, formatDatumOptions) : undefined;
 
   if (dy !== undefined && dy0 !== undefined) {
-    return i18next.t('chart.cost_forecast_cone_tooltip', { value0: dy0, value1: dy });
+    return intl.formatMessage(messages.ChartCostForecastConeTooltip, { value0: dy0, value1: dy });
   }
-  return dy !== undefined ? dy : i18next.t('chart.no_data');
+  return dy !== undefined ? dy : intl.formatMessage(messages.ChartNoData);
 };
 
 export const getResizeObserver = (containerRef: HTMLDivElement, handleResize: () => void) => {

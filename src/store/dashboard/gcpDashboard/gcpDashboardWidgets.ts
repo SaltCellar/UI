@@ -6,6 +6,7 @@ import {
   ComputedReportItemType,
   ComputedReportItemValueType,
 } from 'components/charts/common/chartDatumUtils';
+import messages from 'locales/messages';
 import { paths } from 'routes';
 import { DashboardChartType } from 'store/dashboard/common/dashboardCommon';
 
@@ -16,12 +17,12 @@ const getId = () => currrentId++;
 
 export const computeWidget: GcpDashboardWidget = {
   id: getId(),
-  titleKey: 'gcp_dashboard.compute_title',
+  titleKey: messages.GCPComputeTitle,
   forecastPathsType: ForecastPathsType.gcp,
   reportPathsType: ReportPathsType.gcp,
   reportType: ReportType.instanceType,
   details: {
-    costKey: 'cost',
+    costKey: messages.Cost,
     formatOptions: {
       fractionDigits: 2,
     },
@@ -31,7 +32,7 @@ export const computeWidget: GcpDashboardWidget = {
     usageFormatOptions: {
       fractionDigits: 0,
     },
-    usageKey: 'dashboard.usage',
+    usageKey: messages.Usage,
   },
   filter: {
     service: 'Compute Engine',
@@ -45,7 +46,7 @@ export const computeWidget: GcpDashboardWidget = {
     formatOptions: {
       fractionDigits: 2,
     },
-    titleKey: 'dashboard.daily_usage_comparison',
+    titleKey: messages.DashboardDailyUsageComparison,
     type: ChartType.daily,
   },
   topItems: {
@@ -62,7 +63,7 @@ export const computeWidget: GcpDashboardWidget = {
 
 export const costSummaryWidget: GcpDashboardWidget = {
   id: getId(),
-  titleKey: 'gcp_dashboard.cost_title',
+  titleKey: messages.GCPCostTitle,
   forecastPathsType: ForecastPathsType.gcp,
   forecastType: ForecastType.cost,
   reportPathsType: ReportPathsType.gcp,
@@ -70,7 +71,7 @@ export const costSummaryWidget: GcpDashboardWidget = {
   details: {
     adjustContainerHeight: true,
     appNavId: 'gcp',
-    costKey: 'cost',
+    costKey: messages.Cost,
     formatOptions: {
       fractionDigits: 2,
     },
@@ -85,8 +86,8 @@ export const costSummaryWidget: GcpDashboardWidget = {
     computedReportItem: ComputedReportItemType.cost,
     computedReportItemValue: ComputedReportItemValueType.total,
     formatOptions: {},
-    dailyTitleKey: 'gcp_dashboard.daily_cost_trend_title',
-    titleKey: 'gcp_dashboard.cost_trend_title',
+    dailyTitleKey: messages.GCPDailyCostTrendTitle,
+    titleKey: messages.GCPCostTrendTitle,
     type: ChartType.rolling,
   },
   topItems: {
@@ -99,11 +100,11 @@ export const costSummaryWidget: GcpDashboardWidget = {
 
 export const databaseWidget: GcpDashboardWidget = {
   id: getId(),
-  titleKey: 'dashboard.database_title',
+  titleKey: messages.DashboardDatabaseTitle,
   reportPathsType: ReportPathsType.gcp,
   reportType: ReportType.database,
   details: {
-    costKey: 'cost',
+    costKey: messages.Cost,
     formatOptions: {
       fractionDigits: 2,
     },
@@ -119,7 +120,7 @@ export const databaseWidget: GcpDashboardWidget = {
     computedReportItem: ComputedReportItemType.cost,
     computedReportItemValue: ComputedReportItemValueType.total,
     formatOptions: {},
-    titleKey: 'dashboard.cumulative_cost_comparison',
+    titleKey: messages.DashboardCumulativeCostComparison,
     type: ChartType.rolling,
   },
   topItems: {
@@ -136,11 +137,11 @@ export const databaseWidget: GcpDashboardWidget = {
 
 export const networkWidget: GcpDashboardWidget = {
   id: getId(),
-  titleKey: 'dashboard.network_title',
+  titleKey: messages.DashboardNetworkTitle,
   reportPathsType: ReportPathsType.gcp,
   reportType: ReportType.network,
   details: {
-    costKey: 'cost',
+    costKey: messages.Cost,
     formatOptions: {
       fractionDigits: 2,
     },
@@ -158,7 +159,7 @@ export const networkWidget: GcpDashboardWidget = {
     computedReportItem: ComputedReportItemType.cost,
     computedReportItemValue: ComputedReportItemValueType.total,
     formatOptions: {},
-    titleKey: 'dashboard.cumulative_cost_comparison',
+    titleKey: messages.DashboardCumulativeCostComparison,
     type: ChartType.rolling,
   },
   topItems: {
@@ -175,11 +176,11 @@ export const networkWidget: GcpDashboardWidget = {
 
 export const storageWidget: GcpDashboardWidget = {
   id: getId(),
-  titleKey: 'dashboard.storage_title',
+  titleKey: messages.DashboardStorageTitle,
   reportPathsType: ReportPathsType.gcp,
   reportType: ReportType.storage,
   details: {
-    costKey: 'cost',
+    costKey: messages.Cost,
     formatOptions: {
       fractionDigits: 2,
     },
@@ -189,7 +190,7 @@ export const storageWidget: GcpDashboardWidget = {
     usageFormatOptions: {
       fractionDigits: 0,
     },
-    usageKey: 'dashboard.usage',
+    usageKey: messages.Usage,
   },
   trend: {
     computedReportItem: ComputedReportItemType.usage,
@@ -197,7 +198,7 @@ export const storageWidget: GcpDashboardWidget = {
     formatOptions: {
       fractionDigits: 2,
     },
-    titleKey: 'dashboard.daily_usage_comparison',
+    titleKey: messages.DashboardDailyUsageComparison,
     type: ChartType.daily,
   },
   topItems: {
