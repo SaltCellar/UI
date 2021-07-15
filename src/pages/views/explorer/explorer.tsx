@@ -132,15 +132,16 @@ class Explorer extends React.Component<ExplorerProps> {
   }
 
   public componentDidUpdate(prevProps: ExplorerProps, prevState: ExplorerState) {
-    const { location, report, reportError, queryString } = this.props;
+    const { location, perspective, report, reportError, queryString } = this.props;
     const { selectedItems } = this.state;
 
+    const newPerspective = prevProps.perspective !== perspective;
     const newQuery = prevProps.queryString !== queryString;
     const noReport = !report && !reportError;
     const noLocation = !location.search;
     const newItems = prevState.selectedItems !== selectedItems;
 
-    if (newQuery || noReport || noLocation || newItems) {
+    if (newPerspective || newQuery || noReport || noLocation || newItems) {
       this.updateReport();
     }
   }
@@ -575,6 +576,7 @@ const mapStateToProps = createMapStateToProps<ExplorerOwnProps, ExplorerStatePro
   const queryFromRoute = parseQuery<Query>(location.search);
   const dateRange = getDateRangeDefault(queryFromRoute);
   const { end_date, start_date } = getDateRange(getDateRangeDefault(queryFromRoute));
+
   const perspective = getPerspectiveDefault({
     awsProviders,
     awsProvidersFetchStatus,
